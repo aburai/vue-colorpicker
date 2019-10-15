@@ -12,10 +12,17 @@
         default: 1
       }
     },
+    data() {
+      return {
+        colormaps: ['jet', 'hsv', 'hot', 'cool', 'spring', 'summer', 'autumn', 'winter', 'earth', 'electric', 'magma'],
+        currentmap: 'jet'
+      }
+    },
     computed: {
       colorData() {
-        const colorMap = ColorMap({colormap: 'jet', format: 'hex', nshades: 24, alpha: 1})
-        console.log('colorMap', colorMap)
+        const colormap = this.currentmap
+        const colorMap = ColorMap({colormap, format: 'hex', nshades: 24, alpha: 1})
+        // console.log('colorMap', colorMap)
         const data = []
         const colors = []
         const labels = []
@@ -35,6 +42,7 @@
           rgb: `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`,
           rgba: `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${this.alpha})`
         }
+        console.log('colors', colors)
         this.$emit('click', colors)
       }
     }
@@ -42,8 +50,8 @@
 </script>
 
 <template>
-  <VCard class="pa-4">
-    <VCardTitle>Colorpicker</VCardTitle>
+  <VSheet class="pa-4">
+    <VSelect v-model="currentmap" :items="colormaps" label="Colormap" dense></VSelect>
     <VPie v-bind="colorData" @click="emit"></VPie>
-  </VCard>
+  </VSheet>
 </template>

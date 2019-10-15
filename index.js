@@ -1,4 +1,5 @@
 import VColorpicker from './components/v-colorpicker'
+import ColorMap from 'colormap'
 
 // This is your plugin object. It can be exported to be used anywhere.
 const VueColorpicker = {
@@ -6,6 +7,15 @@ const VueColorpicker = {
   // It takes the global Vue object as well as user-defined options.
   install(Vue, options = {}) {
     Vue.component(VColorpicker.name, VColorpicker)
+    Vue.prototype.$colorpicker = {
+      colorMap(params = {}) {
+        const colormap = params.colormap || 'hsv'
+        const format = params.format || 'hex'
+        const nshades = params.nshades || 24
+        const alpha = params.alpha || 1
+        return ColorMap({colormap, format, nshades, alpha})
+      }
+    }
   }
 }
 
