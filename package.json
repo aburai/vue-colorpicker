@@ -1,13 +1,13 @@
 {
   "name": "@aburai/vue-colorpicker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
     "vue": "^2.6.10"
   },
   "dependencies": {
-    "chart.js": "^2.8.0",
+    "chart.js": "^2.9.4",
     "chartjs-plugin-datalabels": "^0.7.0",
     "color-convert": "^2.0.1",
     "colormap": "^2.3.1",
